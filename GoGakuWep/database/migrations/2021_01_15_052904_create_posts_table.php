@@ -19,6 +19,23 @@ class CreatePostsTable extends Migration
             $table->mediumText('body');
             $table->timestamps();
         });
+
+        Schema::create('post_list', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('title', 100);
+            $table->string('image', 100);
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('list_word', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('word', 100);
+            $table->string('mean', 100);
+            $table->string('image', 100);
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -29,5 +46,7 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('posts');
+        Schema::dropIfExists('post_list');
+        Schema::dropIfExists('list_word');
     }
 }
